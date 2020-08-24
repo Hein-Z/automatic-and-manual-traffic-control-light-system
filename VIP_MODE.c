@@ -1,0 +1,86 @@
+#include<xc.h>
+#include"TRAFFIC.h"
+#include"TMR2.h"
+#include"LED_SEGMENT.h"
+
+void VIP_mode(void){
+  for(char i=0;i<=8;i++)
+       Seg[i]=0;
+       Seg[9]=BL;
+       Seg[8]=DP;
+    while(VIP==VIP1)
+    {
+        while(SysTick.On_Off)
+            ;
+        SysTick.On_Off=ON; 
+        Clr_LED();
+        LED_7SEGMENT_Update(Seg);
+        Trafficlight->LED.t1green=1;
+        Trafficlight->LED.t2red=1;
+        Trafficlight->LED.t3red=1;
+        Trafficlight->LED.t4red=1;
+        Latch_Traffic_LED(&LAT);
+        Temp=0X00;
+        Temp|=~(PORTB>>4);
+        Temp|=0X0F;
+        VIP=VIP_PrioTab[Temp];
+        reset=1;
+    }
+     while(VIP==VIP2)
+     {
+         while(SysTick.On_Off)
+            ;
+        SysTick.On_Off=ON; 
+        Clr_LED();
+        LED_7SEGMENT_Update(Seg);
+        Trafficlight->LED.t2green=1;
+        Trafficlight->LED.t1red=1;
+        Trafficlight->LED.t3red=1;
+        Trafficlight->LED.t4red=1;
+        Latch_Traffic_LED(&LAT);
+        Temp=0X00;
+        Temp|=~(PORTB>>4);
+        Temp|=0X0F;
+        VIP=VIP_PrioTab[Temp];
+        reset=1;
+     }
+   while(VIP==VIP3)
+    {
+        while(SysTick.On_Off)
+            ;
+        SysTick.On_Off=ON; 
+        Clr_LED();
+        LED_7SEGMENT_Update(Seg);
+        Trafficlight->LED.t3green=1;
+        Trafficlight->LED.t1red=1;
+        Trafficlight->LED.t2red=1;
+        Trafficlight->LED.t4red=1;
+        Latch_Traffic_LED(&LAT);
+        Temp=0X00;
+        Temp|=~(PORTB>>4);
+        Temp|=0X0F;
+        VIP=VIP_PrioTab[Temp];
+        reset=1;
+    }
+    while(VIP==VIP4)
+    {
+        while(SysTick.On_Off)
+            ;
+        SysTick.On_Off=ON; 
+        Clr_LED();
+        LED_7SEGMENT_Update(Seg);
+        Trafficlight->LED.t4green=1;
+        Trafficlight->LED.t2red=1;
+        Trafficlight->LED.t3red=1;
+        Trafficlight->LED.t1red=1;
+        Latch_Traffic_LED(&LAT);
+        Temp=0X00;
+        Temp|=~(PORTB>>4);
+        Temp|=0X0F;
+        VIP=VIP_PrioTab[Temp];
+        reset=1;
+    }
+    
+}
+
+
