@@ -3,14 +3,14 @@
 <xc.h>
 
 # Requiredment
-MBLAB X IDE
-Proteus 8
+- MBLAB X IDE
+- Proteus 8
 
 # Used Components
-PIC 16F887 microcontroller
-8 7segments
-trafficlight
-four push buttons
+- PIC 16F887 microcontroller
+- 8 7segments
+- trafficlight
+- four push buttons
 
 # How does it work
 
